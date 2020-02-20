@@ -1,5 +1,6 @@
 require 'java'
 require_relative 'app_constants.rb'
+require_relative 'controls_factory.rb'
 
 java_import java.lang.System
 java_import org.eclipse.swt.SWT
@@ -23,7 +24,7 @@ java_import org.eclipse.swt.graphics.Rectangle
 java_import org.eclipse.swt.layout.FillLayout
 
 
-puts System.currentTimeMillis
+#puts System.currentTimeMillis
 
 #swt = Java::org.eclipse.swt
 #widgets = Java::org.eclipse.swt.widgets
@@ -44,6 +45,8 @@ class MainWindow < ApplicationWindow
     container.setLayout(FillLayout.new)
 
     data_view = App_Constants.make_composite(container) 
+	button = Controls.button(data_view, "Push me",  -> e {puts "hello"})
+
     txtHello = Text.new(data_view, SWT::NONE)
     txtHello.text = "Hello World"
 
