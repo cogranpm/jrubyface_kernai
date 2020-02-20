@@ -45,10 +45,15 @@ class MainWindow < ApplicationWindow
     container.setLayout(FillLayout.new)
 
     data_view = App_Constants.make_composite(container) 
-	button = Controls.button(data_view, "Push me",  -> e {puts "hello"})
-
     txtHello = Text.new(data_view, SWT::NONE)
     txtHello.text = "Hello World"
+
+	# the lamda passed as final argument closes over the text control, not the best way but shows something 
+	button = Controls.button(data_view, "Push me",  -> e {
+		setStatus("I pushed button")
+		txtHello.text = "I pushed the button"
+		})
+
 
     getShell.text = "Kernai"
     setStatus("Kernai is a go")
